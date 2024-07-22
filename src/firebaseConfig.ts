@@ -1,27 +1,24 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
-import { getFunctions, httpsCallable } from 'firebase/functions';
 
-// Function to fetch Firebase configuration using a callable function
-const fetchFirebaseConfig = async () => {
-  const functions = getFunctions();
-  const getConfig = httpsCallable(functions, 'getFirebaseConfig');
-  const result = await getConfig();
-  return result.data;
-};
 
-// Initialize Firebase asynchronously
-fetchFirebaseConfig()
-  .then((firebaseConfig) => {
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const database = getDatabase(app);
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID  
+  };
 
-    // Set Auth persistence
-    setPersistence(auth, browserLocalPersistence).catch(console.error);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase(app);
 
-    // Export the initialized services
-    export { auth, database };
-  })
-  .catch(console.error);
+// Set Auth persistence
+setPersistence(auth, browserLocalPersistence).catch(console.error);
+
+export { auth, database };
