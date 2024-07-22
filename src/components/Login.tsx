@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../authService';
-import '../styles/Login.css';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -20,7 +19,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="container login">
+    <div class="container login">
       <h1>Iniciar Sesión</h1>
       <form onSubmit={handleLogin}>
         <label>

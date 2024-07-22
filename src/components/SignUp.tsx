@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../authService';
-import '../styles/SignUp.css';
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +25,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="container signup">
+    <div class="container signup">
       <h1>Crear Cuenta</h1>
       <form onSubmit={handleSignUp}>
         <label>

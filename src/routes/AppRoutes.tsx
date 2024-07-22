@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from '../components/Landing';
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
-import App from '../components/Home'; // Formerly TrapGrid
+import App from '../components/Home'; 
 import TrapDetail from '../components/TrapDetail';
+import Tutoriales from '../components/Tutoriales';
+import AppAuth from '../components/AppAuth';
 import ProtectedRoute from '../components/ProtectedRoute';
 import RedirectAuthenticated from '../components/RedirectAuthenticated';
 
@@ -17,18 +19,11 @@ const AppRoutes: React.FC = () => {
           path="/login"
           element={
             <RedirectAuthenticated>
-              <Login />
+              <AppAuth />
             </RedirectAuthenticated>
           }
         />
-        <Route
-          path="/signup"
-          element={
-            <RedirectAuthenticated>
-              <SignUp />
-            </RedirectAuthenticated>
-          }
-        />
+        
         <Route
           path="/app"
           element={
@@ -38,13 +33,14 @@ const AppRoutes: React.FC = () => {
           }
         />
         <Route
-          path="/app/trap/:id"
+          path="/app/trap/:trapKey"
           element={
             <ProtectedRoute>
               <TrapDetail />
             </ProtectedRoute>
           }
         />
+        <Route path="/tutoriales" element={<Tutoriales />} />
       </Routes>
     </Router>
   );

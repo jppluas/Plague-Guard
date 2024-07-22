@@ -5,11 +5,12 @@ import { auth, database } from '../firebaseConfig';
 import TrapCard from './TrapCard';
 import AddTrap from './AddTrap';
 import TopBar from './TopBar';
+import Tutoriales from './Tutoriales';
 import '../styles/Home.css'; 
 
 const App: React.FC = () => {
   const [user] = useAuthState(auth);
-  const [objects, setObjects] = useState<{ id: string, name: string, value: string }[]>([]);
+  const [objects, setObjects] = useState<{ trapKey: string, id: string, name: string, location: string, status: boolean}[]>([]);
   const [showAddTrap, setShowAddTrap] = useState(false);
 
   useEffect(() => {
@@ -19,7 +20,8 @@ const App: React.FC = () => {
         const data = snapshot.val();
         if (data) {
           const loadedObjects = Object.keys(data).map((key) => ({
-            id: key,
+            key: key,
+            trapKey: key,
             ...data[key],
           }));
           setObjects(loadedObjects);
@@ -48,7 +50,7 @@ const App: React.FC = () => {
       {showAddTrap && <AddTrap onClose={handleCloseAddTrap} />}
       <div className="trap-list">
         {objects.map((object) => (
-          <TrapCard key={object.id} id={object.id} name={object.name} location={object.value} status="Activa" />
+          <TrapCard key={object.trapKey} trapKey={object.trapKey} id={object.id} name={object.name} location={object.location} status={object.status} />
         ))}
       </div>
     </div>

@@ -20,9 +20,14 @@ const TopBar: React.FC<TopBarProps> = ({ onAddTrapClick }) => {
     }
   };
 
+  const redirectTutoriales = () => {
+    navigate('/tutoriales');
+  }
+
   return (
     <div className="top-bar">
       <button onClick={onAddTrapClick}>Add Trap</button>
+      <button onClick={redirectTutoriales}> Tutoriales </button>
       <button onClick={handleLogout} className="logout-button">Logout</button>
     </div>
   );
