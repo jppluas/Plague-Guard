@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 interface TrapCardProps {
   trapKey: string; 
-  id: string;
   name: string;
   location: string;
   status: boolean;
 }
 
-const TrapCard: React.FC<TrapCardProps> = ({ trapKey, id, name, location, status }) => {
+const TrapCard: React.FC<TrapCardProps> = ({ trapKey, name, location, status }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {

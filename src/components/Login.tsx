@@ -19,8 +19,8 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div class="container login">
-      <h1>Iniciar Sesión</h1>
+  <div className="container login">
+        <h1>Iniciar Sesión</h1>
       <form onSubmit={handleLogin}>
         <label>
           Email:

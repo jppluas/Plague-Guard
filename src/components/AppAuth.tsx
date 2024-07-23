@@ -1,4 +1,3 @@
-
 import SignUp from './SignUp';
 import Login from './Login';
 import "../styles/AppAuth.css";
@@ -6,7 +5,7 @@ import "../styles/AppAuth.css";
 const AppAuth: React.FC = () => {
   
   return (
-    <div class="main container">
+    <div className="main container">
         <Login />
         <SignUp />
     </div>

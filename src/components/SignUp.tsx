@@ -25,7 +25,7 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div class="container signup">
+    <div className="container signup">
       <h1>Crear Cuenta</h1>
       <form onSubmit={handleSignUp}>
         <label>

@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { ref, onValue, get, update, remove } from 'firebase/database';
+import { ref, get, update, remove } from 'firebase/database';
 import { auth, database } from '../firebaseConfig';
 import { useParams, useNavigate } from 'react-router-dom';
 
-type Trap = {
-  trapKey: string;
-  name: string;
-  location: string;
-  status: boolean;
-  pheromones: number;
-  pests: number;
-};
-
-const TrapDetail: React.FC<Trap> = () => {
+const TrapDetail: React.FC = () => {
 
     const { trapKey } = useParams<{ trapKey: string }>();
     const [user] = useAuthState(auth);
-    const [object, setObject] = useState<{ trapKey: string, name: string, location: string, status: boolean, pheromones: number, pests: number}>({}); 
+    const [object, setObject] = useState<{ trapKey: string, name: string, location: string, status: boolean, pheromones: number, pests: number}>({
+      trapKey: '',
+      name: '',
+      location: '',
+      status: false,
+      pheromones: 0,
+      pests: 0
+    });
 
     useEffect(() => {
         if (user) {
-            const userObjectsRef = ref(database, `users/${user.uid}/objects/${trapKey}`); 
+            const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
             get(userObjectsRef).then((snapshot) => {
                 const data = snapshot.val();
                 if (data) {
@@ -34,7 +32,7 @@ const TrapDetail: React.FC<Trap> = () => {
     const navigate = useNavigate();
 
     const handleStatusChange = () => {
-        const userObjectsRef = ref(database, `users/${user.uid}/objects/${trapKey}`);
+        const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
         update(userObjectsRef, {
             status: !object.status
         });
@@ -45,7 +43,7 @@ const TrapDetail: React.FC<Trap> = () => {
     };
 
     const handleRemove = () => {
-        const userObjectsRef = ref(database, `users/${user.uid}/objects/${trapKey}`);
+        const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
         remove(userObjectsRef)
         navigate("/app");
     }

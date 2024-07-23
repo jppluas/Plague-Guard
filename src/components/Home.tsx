@@ -5,7 +5,6 @@ import { auth, database } from '../firebaseConfig';
 import TrapCard from './TrapCard';
 import AddTrap from './AddTrap';
 import TopBar from './TopBar';
-import Tutoriales from './Tutoriales';
 import '../styles/Home.css'; 
 
 const App: React.FC = () => {
@@ -50,7 +49,7 @@ const App: React.FC = () => {
       {showAddTrap && <AddTrap onClose={handleCloseAddTrap} />}
       <div className="trap-list">
         {objects.map((object) => (
-          <TrapCard key={object.trapKey} trapKey={object.trapKey} id={object.id} name={object.name} location={object.location} status={object.status} />
+          <TrapCard key={object.trapKey} trapKey={object.trapKey} name={object.name} location={object.location} status={object.status} />
         ))}
       </div>
     </div>
