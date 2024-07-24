@@ -1,5 +1,6 @@
 import React from 'react';
 import TopBarLogin from './TopBarLogin';
+import '../styles/Tutoriales.css';
 
 const Tutoriales: React.FC = () => {
 

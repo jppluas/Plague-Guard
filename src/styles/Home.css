@@ -29,6 +29,7 @@
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  margin: 2%;
 }
 
 .add-trap-popup {
@@ -47,6 +48,7 @@
   background: #fff;
   padding: 20px;
   border-radius: 5px;
+  display: flex;
 }
 
 .add-trap-content form {
@@ -99,7 +101,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   
   .add-trap-popup {
@@ -133,6 +135,9 @@
   .add-trap-content form select {
     padding: 5px;
     margin-bottom: 10px;
+    border: solid 1px;
+    margin: 1% 2%;
+    width: 50%;
   }
   
   .add-trap-content form button {
@@ -140,3 +145,14 @@
     margin-top: 10px;
   }
   
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .buttons button {
+    margin: 1rem;
+  }	

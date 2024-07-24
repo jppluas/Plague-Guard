@@ -1,0 +1,41 @@
+.trap-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 3%;
+  }
+
+  .sub-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 1rem;
+  }
+
+  .image-buttons {
+    display: flex;
+    width: 50%;
+    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    flex : 1;
+  }
+
+  .image-buttons button{
+    margin-top: 1rem;
+  
+  }
+
+  .image-buttons img {
+    width: 50%;
+  }
+
+.trap-info{
+    width: 50%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -7,6 +7,7 @@ import Tutoriales from '../components/Tutoriales';
 import AppAuth from '../components/AppAuth';
 import ProtectedRoute from '../components/ProtectedRoute';
 import RedirectAuthenticated from '../components/RedirectAuthenticated';
+import NotFound from '../components/NotFound'; // Importa el componente NotFound
 
 const AppRoutes: React.FC = () => {
   return (
@@ -21,7 +22,6 @@ const AppRoutes: React.FC = () => {
             </RedirectAuthenticated>
           }
         />
-        
         <Route
           path="/app"
           element={
@@ -39,6 +39,7 @@ const AppRoutes: React.FC = () => {
           }
         />
         <Route path="/tutoriales" element={<Tutoriales />} />
+        <Route path="*" element={<NotFound />} /> {/* Ruta para la página 404 */}
       </Routes>
     </Router>
   );

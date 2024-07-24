@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../styles/TrapCard.css';
 
 interface TrapCardProps {
   trapKey: string; 
@@ -17,7 +18,7 @@ const TrapCard: React.FC<TrapCardProps> = ({ trapKey, name, location, status }) 
 
   return (
     <div className="trap-card" onClick={handleCardClick}>
-      <img src="src/images/trap-image.png" alt={name} className="trap-card-image" />
+      <img src="https://andasur.com/wp-content/uploads/2022/09/trampa-feromona-2-293x300.jpg" alt={name} className="trap-card-image" />
       <div className="trap-card-info">
         <h3>{name}</h3>
         <p>{location}</p>

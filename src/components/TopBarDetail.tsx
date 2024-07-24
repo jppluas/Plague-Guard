@@ -5,11 +5,8 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import '../styles/TopBar.css';
 
-type TopBarProps = {
-  onAddTrapClick: () => void;
-};
 
-const TopBar: React.FC<TopBarProps> = ({ onAddTrapClick }) => {
+const TopBar: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -29,21 +26,22 @@ const TopBar: React.FC<TopBarProps> = ({ onAddTrapClick }) => {
     navigate('/');
   }
 
+  const redirectHome = () => {
+    navigate('/app');
+  }
 
   return (
     <div className="top-bar">
       <div className="logo-container" onClick={redirectLanding}>
-      <img className="logo" src="icon.png" alt="PlagueGuard logo" width="30px" height="35px"/>
+      <img className="logo" src="../../icon.png" alt="PlagueGuard logo" width="30px" height="35px"/>
       <h2>PlagueGuard</h2>
       </div>
 
       <div className="buttons">
-        <button onClick={onAddTrapClick} className="nav-button">Nueva trampa</button>
+        <button onClick={redirectHome} className="nav-button"> Atrás</button>
         <button onClick={redirectTutoriales} className="nav-button"> Tutoriales </button>
         <button onClick={handleLogout} className="logout-button nav-button">Cerrar sesión</button>
       </div>
-
-      
     </div>
   );
 };

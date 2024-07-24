@@ -5,7 +5,7 @@ import "../styles/AppAuth.css";
 const AppAuth: React.FC = () => {
   
   return (
-    <div className="main container">
+    <div className="main">
         <Login />
         <SignUp />
     </div>

@@ -43,41 +43,41 @@ const AddTrap: React.FC<AddTrapProps> = ({ onClose }) => {
       setError('');
       onClose();
     } catch (error) {
-      setError('Failed to add trap');
+      setError('Failed to Nueva trampa');
     }
   };
 
   return (
     <div className="add-trap-popup">
       <div className="add-trap-content">
-        <h1>Add Trap</h1>
+        <h1>Nueva trampa</h1>
         <form onSubmit={handleAddTrap}>
           <label>
-            Name:
+            Nombre:
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
           </label>
           <label>
-            Location:
+            Ubicacion:
             <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
           </label>
           <label>
-            Status:
+            Estado:
             <select value={status} onChange={(e) => setStatus(e.target.value)} required>
               <option value="Activa">Activa</option>
               <option value="Inactiva">Inactiva</option>
             </select>
           </label>
           <label>
-            Pheromones:
+            Feromonas:
             <input type="number" value={pheromones} onChange={(e) => setPheromones(Number(e.target.value))} required />
           </label>
           <label>
-            Plagues:
+            Plagas:
             <input type="number" value={plagues} onChange={(e) => setPlagues(Number(e.target.value))} required />
           </label>
           {error && <p className="error">{error}</p>}
-          <button type="submit">Add Trap</button>
-          <button type="button" onClick={onClose}>Cancel</button>
+          <button type="submit">Añadir trampa</button>
+          <button type="button" onClick={onClose}>Cancelar</button>
         </form>
       </div>
     </div>

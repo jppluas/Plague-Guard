@@ -9,11 +9,18 @@ const Landing: React.FC = () => {
     navigate('/login');
   };
 
+  const redirectTutoriales = () => {
+    navigate('/tutoriales');
+  }
 
   return (
-    <div className="landing">
-      <h1>Welcome to PlagueGuard</h1>
+    <div className="container landing">
+      <h1>Bienvenido a PlagueGuard</h1>
+      <div className="buttons">
       <button onClick={handleLogin}>Ir a la App</button>
+      <button onClick={redirectTutoriales}> Tutoriales</button>
+      </div>
+      
     </div>
   );
 };
