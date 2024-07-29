@@ -22,7 +22,9 @@
     border-radius: 20px;
     padding: 20px;
     flex: 1;
-    background-color: #ffffff69;
+    background-color: #0000006b;
+    color: white
+    ;
   }
   
   form {

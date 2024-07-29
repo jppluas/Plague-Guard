@@ -151,6 +151,8 @@ const TrapDetail: React.FC = () => {
           <p>{object.contador}</p>
         </div>
       </div>
+      {!isPaidVersion && <AdSidebar position="bottom" />}
+
     </div>
   );
 };

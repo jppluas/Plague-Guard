@@ -65,7 +65,10 @@ const App: React.FC = () => {
           ))
         )}
       </div>
+      {!isPaidVersion && <AdSidebar position="bottom" />}
+
       <PlanForm />
+
     </div>
   );
 };

@@ -31,6 +31,8 @@ const Tutoriales: React.FC = () => {
         </div>
       ))}
     </div>
+    {!isPaidVersion && <AdSidebar position="bottom" />}
+
     </div>
   );
 };

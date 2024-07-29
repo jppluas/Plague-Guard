@@ -76,7 +76,7 @@ const TopBar: React.FC = () => {
 
       <div className="profile-menu-container" ref={userMenuRef}>
         <img 
-          src="https://via.placeholder.com/35" 
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
           className="profile-image" 
           alt="Profile" 
           onClick={toggleMenu} 
