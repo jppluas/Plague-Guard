@@ -1,5 +1,9 @@
 /* App.css */
 
+h2 {
+  text-align: center;
+}
+
 .trap-grid {
   padding: 20px;
 }

@@ -132,13 +132,16 @@ const TrapDetail: React.FC = () => {
             alt={object.name}
             className="trap-detail-image"
           />
-          {isPaidVersion && <h4>Su cambio de feromonas llega en 56 días.</h4>}           
+          {isPaidVersion && <h4>Su cambio de feromonas llega en 56 días.</h4>}  
+          <div className="action-buttons">
           <button onClick={handleStatusChange} className="deactivate-button">
             {object.trampa ? "Desactivar" : "Activar"}
           </button>
           <button onClick={handleRemove} className="remove-button">
             Eliminar
           </button>
+          </div>         
+          
          
         </div>
 
@@ -149,10 +152,13 @@ const TrapDetail: React.FC = () => {
           <p className={object.trampa ? "status-active" : "status-inactive"}>
             {object.trampa ? "Activo" : "Inactivo"}
           </p>
-          <h3>Siguiente cambio de feromonas</h3>
-          <p>{object.pheromones} días restantes</p>
-          <h3>Conteo de Plagas</h3>
-          <p>{object.contador}</p>
+          <div className="trap-data">
+          <p>Siguiente cambio de feromonas</p>
+          <h2>{object.pheromones} días restantes</h2>
+          <p>Conteo de Plagas</p>
+          <h2>{object.contador} capturados</h2>
+          </div>
+          
           {isPaidVersion && <button >
             Solicitar asistencia <FontAwesomeIcon icon={faLifeRing} />
           </button>}
