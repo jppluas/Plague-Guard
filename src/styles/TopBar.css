@@ -71,6 +71,7 @@
     border-radius: 5px;
     overflow: hidden;
     z-index: 10;
+    width: 175px;
   }
   
   .profile-menu .nav-button {

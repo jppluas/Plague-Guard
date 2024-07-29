@@ -68,8 +68,11 @@ const TopBar: React.FC = () => {
 
       <div className={`buttons ${hamburgerOpen ? 'open' : ''}`} ref={menuRef}>
         <button onClick={togglePaidVersion} className="nav-button">
-          {isPaidVersion ? 'Vista usuario gratis' : 'Vista usuario plus'}
+        {isPaidVersion ? 'Vista Basic' : 'Vista Premium'}
         </button>
+        {isPaidVersion && <button className="nav-button">
+            Solicitar asistencia
+          </button>}
         <button onClick={redirectTutoriales} className="nav-button"> Tutoriales </button>
         
       </div>
@@ -84,6 +87,7 @@ const TopBar: React.FC = () => {
         {menuOpen && (
           <div className="profile-menu">
             <button onClick={redirectProfile} className="nav-button">Ver Perfil</button>
+            {!isPaidVersion && <button className="nav-button">Volverse Premium</button>}
             <button onClick={handleLogout} className="nav-button">Cerrar sesión</button>
           </div>
         )}

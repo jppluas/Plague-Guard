@@ -8,6 +8,8 @@ import TopBar from "./TopBarDetail";
 import AdSidebar from "./AdSidebar";
 import { useAppContext } from "../context/AppContext";
 import "../styles/TrapDetail.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLifeRing } from '@fortawesome/free-solid-svg-icons';
 
 const TrapDetail: React.FC = () => {
   const { trapKey } = useParams<{ trapKey: string }>();
@@ -130,12 +132,14 @@ const TrapDetail: React.FC = () => {
             alt={object.name}
             className="trap-detail-image"
           />
+          {isPaidVersion && <h4>Su cambio de feromonas llega en 56 días.</h4>}           
           <button onClick={handleStatusChange} className="deactivate-button">
             {object.trampa ? "Desactivar" : "Activar"}
           </button>
           <button onClick={handleRemove} className="remove-button">
             Eliminar
           </button>
+         
         </div>
 
         <div className="trap-info">
@@ -149,6 +153,11 @@ const TrapDetail: React.FC = () => {
           <p>{object.pheromones} días restantes</p>
           <h3>Conteo de Plagas</h3>
           <p>{object.contador}</p>
+          {isPaidVersion && <button >
+            Solicitar asistencia <FontAwesomeIcon icon={faLifeRing} />
+          </button>}
+          
+          
         </div>
       </div>
       {!isPaidVersion && <AdSidebar position="bottom" />}
