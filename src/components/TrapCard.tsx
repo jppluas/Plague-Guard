@@ -6,10 +6,10 @@ interface TrapCardProps {
   trapKey: string; 
   name: string;
   location: string;
-  status: boolean;
+  trampa: boolean;
 }
 
-const TrapCard: React.FC<TrapCardProps> = ({ trapKey, name, location, status }) => {
+const TrapCard: React.FC<TrapCardProps> = ({ trapKey, name, location, trampa }) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -22,7 +22,7 @@ const TrapCard: React.FC<TrapCardProps> = ({ trapKey, name, location, status }) 
       <div className="trap-card-info">
         <h3>{name}</h3>
         <p>{location}</p>
-        <p>{status ? 'Activo' : 'Inactivo'}</p>
+        <p className={trampa ? 'status-active' : 'status-inactive'}>{trampa ? 'Activo' : 'Inactivo'}</p>
       </div>
     </div>
   );

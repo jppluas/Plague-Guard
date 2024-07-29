@@ -5,11 +5,14 @@ import { ref, get, update, remove } from "firebase/database";
 import { auth, database } from "../firebaseConfig";
 import { useParams, useNavigate } from "react-router-dom";
 import TopBar from "./TopBarDetail";
+import AdSidebar from "./AdSidebar";
+import { useAppContext } from "../context/AppContext";
 import "../styles/TrapDetail.css";
 
 const TrapDetail: React.FC = () => {
   const { trapKey } = useParams<{ trapKey: string }>();
   const [user] = useAuthState(auth);
+  const { isPaidVersion } = useAppContext();
   const [object, setObject] = useState<{
     trapKey: string;
     name: string;
@@ -17,6 +20,8 @@ const TrapDetail: React.FC = () => {
     status: boolean;
     pheromones: number;
     pests: number;
+    contador: number;
+    trampa: boolean;
   }>({
     trapKey: "",
     name: "",
@@ -24,14 +29,13 @@ const TrapDetail: React.FC = () => {
     status: false,
     pheromones: 0,
     pests: 0,
+    contador: 0,
+    trampa: true,
   });
 
   useEffect(() => {
     if (user) {
-      const userObjectsRef = ref(
-        database,
-        `users/${user!.uid}/objects/${trapKey}`
-      );
+      const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
       get(userObjectsRef).then((snapshot) => {
         const data = snapshot.val();
         if (data) {
@@ -39,7 +43,7 @@ const TrapDetail: React.FC = () => {
         }
       });
     }
-  }, [user, trapKey]); // Añadir trapKey a la lista de dependencias
+  }, [user, trapKey]);
 
   const navigate = useNavigate();
 
@@ -67,16 +71,13 @@ const TrapDetail: React.FC = () => {
       dangerMode: true,
     }).then((willChange) => {
       if (willChange) {
-        const userObjectsRef = ref(
-          database,
-          `users/${user!.uid}/objects/${trapKey}`
-        );
+        const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
         update(userObjectsRef, {
-          status: !object.status,
+          trampa: !object.trampa,
         });
         setObject({
           ...object,
-          status: !object.status,
+          trampa: !object.trampa,
         });
       }
     });
@@ -106,10 +107,7 @@ const TrapDetail: React.FC = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const userObjectsRef = ref(
-          database,
-          `users/${user!.uid}/objects/${trapKey}`
-        );
+        const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
         remove(userObjectsRef);
         navigate("/app");
       }
@@ -119,53 +117,37 @@ const TrapDetail: React.FC = () => {
   return (
     <div>
       <TopBar />
-
+      {!isPaidVersion && <AdSidebar position="left" />}
+      {!isPaidVersion && <AdSidebar position="right" />}
+      {!isPaidVersion && <AdSidebar position="bottom" />}
       <div className="sub-container">
-      <div className="image-buttons">
+        <div className="image-buttons">
           <img
             src="https://andasur.com/wp-content/uploads/2022/09/trampa-feromona-2-293x300.jpg"
             alt={object.name}
             className="trap-detail-image"
           />
           <button onClick={handleStatusChange} className="deactivate-button">
-            {object.status ? "Desactivar" : "Activar"}
+            {object.trampa ? "Desactivar" : "Activar"}
           </button>
           <button onClick={handleRemove} className="remove-button">
-            Remove
+            Eliminar
           </button>
         </div>
 
-      
         <div className="trap-info">
           <h2>
             {object.name} - {object.location}
           </h2>
-          <p>{object.status ? "Activo" : "Inactivo"}</p>
-          
-            <label>Feromonas</label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={object.pheromones}
-              readOnly
-            />
-            <label>Plagas</label>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={object.pests}
-              readOnly
-            />
-          
-
-        
+          <p className={object.trampa ? "status-active" : "status-inactive"}>
+            {object.trampa ? "Activo" : "Inactivo"}
+          </p>
+          <h3>Siguiente cambio de feromonas</h3>
+          <p>{object.pheromones} días restantes</p>
+          <h3>Conteo de Plagas</h3>
+          <p>{object.contador}</p>
+        </div>
       </div>
-      
-      </div>
-
-      
     </div>
   );
 };

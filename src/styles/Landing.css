@@ -6,6 +6,11 @@
     height: 100vh;
     background-color: #282c34;
     color: white;
+    background: url("https://i.ibb.co/wc3vVG3/trampa.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
   }
   
   .landing button {
@@ -26,3 +31,5 @@
     justify-content: center;
     width: 100%;
   }
+
+  

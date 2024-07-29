@@ -6,10 +6,38 @@
     border: solid 2px #282c34;
     border-radius: 30px;
     cursor: pointer;
-}
-
-.trap-card img {
+    margin-bottom: 20px;
+  }
+  
+  .trap-card img {
     width: 75%;
     margin-top: 15px;
     border-radius: 30px;
-}
+  }
+  
+  .trap-card-info {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .status-active {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .status-inactive {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .trap-card {
+      width: 80%;
+    }
+  }

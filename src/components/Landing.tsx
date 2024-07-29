@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
+import '../styles/Landing.css';
 
 const Landing: React.FC = () => {
   const navigate = useNavigate();

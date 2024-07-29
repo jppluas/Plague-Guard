@@ -1,19 +1,26 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Landing from '../components/Landing';
 import App from '../components/Home'; 
 import TrapDetail from '../components/TrapDetail';
 import Tutoriales from '../components/Tutoriales';
 import AppAuth from '../components/AppAuth';
 import ProtectedRoute from '../components/ProtectedRoute';
 import RedirectAuthenticated from '../components/RedirectAuthenticated';
+import UserProfile from '../components/UserProfile';
 import NotFound from '../components/NotFound'; // Importa el componente NotFound
 
 const AppRoutes: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} />
+      <Route
+          path="/"
+          element={
+            <RedirectAuthenticated>
+              <AppAuth />
+            </RedirectAuthenticated>
+          }
+        />
         <Route
           path="/login"
           element={
@@ -35,6 +42,14 @@ const AppRoutes: React.FC = () => {
           element={
             <ProtectedRoute>
               <TrapDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/app/profile"
+          element={
+            <ProtectedRoute>
+              <UserProfile />
             </ProtectedRoute>
           }
         />

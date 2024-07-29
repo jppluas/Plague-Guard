@@ -156,3 +156,11 @@
   .buttons button {
     margin: 1rem;
   }	
+
+  @media (max-width: 768px) {
+    .add-trap-content {
+      flex-direction: column;
+      align-items: center;
+  }
+  
+  }

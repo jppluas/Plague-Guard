@@ -1,5 +1,15 @@
 .main {
   display: flex;
+  
+}
+
+.back{
+  background: url("https://i.ibb.co/wc3vVG3/trampa.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    height: 100vh;
 }
 
 .login, .signup {
@@ -12,6 +22,7 @@
     border-radius: 20px;
     padding: 20px;
     flex: 1;
+    background-color: #ffffff69;
   }
   
   form {
@@ -23,10 +34,11 @@
   
   label {
     margin-bottom: 0.5rem;
+    font-weight: bold;
   }
   
   input {
-    margin-bottom: 1rem;
+    margin-left: 1rem;
     padding: 0.5rem;
     border-radius: 5px;
     border: none;
@@ -46,4 +58,15 @@
     color: red;
     margin-bottom: 1rem;
   }
+
+  .logo-container {
+    justify-content: center;
+
+}
   
+  @media (max-width: 768px) {
+    .main {
+      flex-direction: column;
+        width: 84%;
+    }
+}

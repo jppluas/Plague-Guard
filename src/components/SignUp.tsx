@@ -1,26 +1,41 @@
-// src/components/SignUp.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../authService';
+import Swal from 'sweetalert2';
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSignUp = async (event: React.FormEvent) => {
     event.preventDefault();
     if (password !== confirmPassword) {
-      setError('Passwords do not match.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Las contraseñas no coinciden.',
+        icon: 'error',
+      });
       return;
     }
     try {
       await signUp(email, password);
       navigate('/app');
-    } catch (error) {
-      setError('Failed to create account.');
+    } catch (error: any) {
+      let errorMessage = 'Error al crear la cuenta.';
+      if (error.code === 'auth/invalid-email') {
+        errorMessage = 'El formato del correo electrónico es incorrecto.';
+      } else if (error.code === 'auth/email-already-in-use') {
+        errorMessage = 'El correo electrónico ya está registrado.';
+      } else if (error.code === 'auth/weak-password') {
+        errorMessage = 'La contraseña no es lo suficientemente segura.';
+      }
+      Swal.fire({
+        title: 'Error',
+        text: errorMessage,
+        icon: 'error',
+      });
     }
   };
 
@@ -29,18 +44,17 @@ const SignUp: React.FC = () => {
       <h1>Crear Cuenta</h1>
       <form onSubmit={handleSignUp}>
         <label>
-          Email:
+          Correo:
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
         <label>
-          Password:
+          Contraseña:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <label>
-          Confirm Password:
+          Confirmar Contraseña:
           <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
         </label>
-        {error && <p className="error">{error}</p>}
         <button type="submit">Crear Cuenta</button>
       </form>
     </div>

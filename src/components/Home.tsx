@@ -5,11 +5,15 @@ import { auth, database } from '../firebaseConfig';
 import TrapCard from './TrapCard';
 import AddTrap from './AddTrap';
 import TopBar from './TopBar';
-import '../styles/Home.css'; 
+import AdSidebar from './AdSidebar';
+import PlanForm from './PlanForm';
+import { useAppContext } from '../context/AppContext';
+import '../styles/Home.css';
 
 const App: React.FC = () => {
   const [user] = useAuthState(auth);
-  const [objects, setObjects] = useState<{ trapKey: string, id: string, name: string, location: string, status: boolean}[]>([]);
+  const { isPaidVersion } = useAppContext();
+  const [objects, setObjects] = useState<{ trapKey: string; id: string; name: string; location: string; trampa: boolean }[]>([]);
   const [showAddTrap, setShowAddTrap] = useState(false);
 
   useEffect(() => {
@@ -46,12 +50,22 @@ const App: React.FC = () => {
   return (
     <div className="container app">
       <TopBar onAddTrapClick={handleAddTrapClick} />
+      {!isPaidVersion && <AdSidebar position="left" />}
+      {!isPaidVersion && <AdSidebar position="right" />}
+      {!isPaidVersion && <AdSidebar position="bottom" />}
       {showAddTrap && <AddTrap onClose={handleCloseAddTrap} />}
       <div className="trap-list">
-        {objects.map((object) => (
-          <TrapCard key={object.trapKey} trapKey={object.trapKey} name={object.name} location={object.location} status={object.status} />
-        ))}
+        {objects.length === 0 ? (
+          <div className="no-traps-message">
+            No hay trampas disponibles. Por favor, agregue una nueva trampa.
+          </div>
+        ) : (
+          objects.map((object) => (
+            <TrapCard key={object.trapKey} trapKey={object.trapKey} name={object.name} location={object.location} trampa={object.trampa} />
+          ))
+        )}
       </div>
+      <PlanForm />
     </div>
   );
 };

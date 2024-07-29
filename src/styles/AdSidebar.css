@@ -1,0 +1,46 @@
+.ad-sidebar {
+    position: fixed;
+    top: 20%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+    height: auto;
+  }
+  
+  .ad-sidebar img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .ad-sidebar.left {
+    left: 0;
+  }
+  
+  .ad-sidebar.right {
+    right: 0;
+  }
+
+  .ad-sidebar.bottom {
+    bottom: 0%;
+    flex-direction: row;
+    top: auto;
+    width: 100%;
+    position: relative;
+  }
+  
+  @media (max-width: 768px) {
+    .ad-sidebar.left, .ad-sidebar.right {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ad-sidebar.bottom{
+      display: none;
+    }
+  }
