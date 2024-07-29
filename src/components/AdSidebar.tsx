@@ -11,6 +11,9 @@ const AdSidebar: React.FC<AdSidebarProps> = ({ position }) => {
       <img src="https://via.placeholder.com/150" alt="Ad 1" />
       <img src="https://via.placeholder.com/150" alt="Ad 2" />
       <img src="https://via.placeholder.com/150" alt="Ad 3" />
+      <img src="https://via.placeholder.com/150" alt="Ad 1" />
+      <img src="https://via.placeholder.com/150" alt="Ad 2" />
+      <img src="https://via.placeholder.com/150" alt="Ad 3" />
     </div>
   );
 };

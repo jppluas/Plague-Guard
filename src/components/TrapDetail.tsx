@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import swal from "sweetalert";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { ref, get, update, remove } from "firebase/database";
+import { ref, get, update } from "firebase/database";
 import { auth, database } from "../firebaseConfig";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import TopBar from "./TopBarDetail";
 import AdSidebar from "./AdSidebar";
 import { useAppContext } from "../context/AppContext";
@@ -44,8 +44,6 @@ const TrapDetail: React.FC = () => {
       });
     }
   }, [user, trapKey]);
-
-  const navigate = useNavigate();
 
   const handleStatusChange = () => {
     swal({
@@ -107,9 +105,14 @@ const TrapDetail: React.FC = () => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
+        /* const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
         remove(userObjectsRef);
-        navigate("/app");
+        navigate("/app"); */
+        swal({
+          title: "¡UPS!",
+          text: "Esta función se encuentra desabilitada por el momento",
+          icon: "info",
+        });
       }
     });
   };

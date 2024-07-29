@@ -1,5 +1,5 @@
 .ad-sidebar {
-    position: fixed;
+    position: absolute;
     top: 20%;
     width: auto;
     display: flex;

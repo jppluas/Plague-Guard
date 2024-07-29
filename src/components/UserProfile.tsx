@@ -10,6 +10,7 @@ const UserProfile: React.FC = () => {
     name: "Gerardo Suarez",
     email: "trampa@gmail.com",
     password: "********",
+    phone: "0987654321",
     address: "Calle 123, Vinces, Los Rios",
     paymentMethod: "Tarjeta de Crédito",
     cardNumber: "**** **** **** 1234",
@@ -35,6 +36,10 @@ const UserProfile: React.FC = () => {
                 <strong>Correo:</strong>
                 <input type="email" defaultValue={user.email} />
               </label>
+            <label>
+                <strong>Telefono:</strong>
+                <input type="text" defaultValue={user.phone} />
+            </label>
               <label>
                 <strong>Contraseña:</strong>
                 <input type="password" defaultValue={user.password} />
