@@ -58,14 +58,13 @@ Plague Guard es una aplicación web diseñada para comunicarse y gestionar tramp
    ```
 
 2. Instala las dependencias:
-
-   ``` sh
-  npm install
-    ```
+   ```sh
+   npm install
+   ```
 
 3. Inicia el servidor de desarrollo:
-   ``` sh
-  npm run dev
+   ```sh
+   npm run dev
    ```
 
 Abre tu navegador y ve a http://localhost:3000.
