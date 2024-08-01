@@ -4,6 +4,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { useAppContext } from '../context/AppContext';
 import '../styles/TopBar.css';
+import Swal from 'sweetalert2';
 
 const TopBar: React.FC = () => {
   const navigate = useNavigate();
@@ -55,8 +56,18 @@ const TopBar: React.FC = () => {
     setMenuOpen(!menuOpen);
   };
 
+  
   const toggleHamburgerMenu = () => {
     setHamburgerOpen(!hamburgerOpen);
+  };
+
+  const solicitarAsistencia = () => {
+    Swal.fire({
+      title: 'Asistencia',
+      text: 'Se ha comunicado con un especialista para asistirle en su problema',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+    });
   };
 
   return (
@@ -70,7 +81,7 @@ const TopBar: React.FC = () => {
         <button onClick={togglePaidVersion} className="nav-button">
         {isPaidVersion ? 'Vista Basic' : 'Vista Premium'}
         </button>
-        {isPaidVersion && <button className="nav-button">
+        {isPaidVersion && <button className="nav-button" onClick={solicitarAsistencia}>
             Solicitar asistencia
           </button>}
         <button onClick={redirectTutoriales} className="nav-button"> Tutoriales </button>

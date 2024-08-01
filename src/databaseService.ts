@@ -6,9 +6,9 @@ type Trap = {
   id: string;
   name: string;
   location: string;
-  status: string;
+  trampa: string;
   pheromones: number;
-  plagues: number;
+  contador: number;
 };
 
 export const addTrapToUser = async (userId: string, trap: Trap) => {

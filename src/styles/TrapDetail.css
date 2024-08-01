@@ -21,10 +21,15 @@
   flex-direction: column;
   align-items: center;
   flex: 1;
+  padding-left: 5%;
 }
 
 .image-buttons img {
   width: 50%;
+}
+
+.image-buttons h4{
+  margin-bottom: 0;
 }
 
 .trap-info {
@@ -33,6 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-right: 10%;
 }
 
 .status-active {
@@ -54,6 +60,7 @@
 .action-buttons {
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
 }
 
 .action-buttons button {
@@ -84,6 +91,7 @@
     margin-top: 1rem;
     flex-direction: column;
     align-items: center;
+    padding: 0;
   }
   
   .image-buttons button {
@@ -99,5 +107,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
+    
   }
+  
 }

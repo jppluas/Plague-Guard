@@ -65,7 +65,7 @@ const UserProfile: React.FC = () => {
               </label>
             </div>
           </div>
-          <button className="save-button">Save</button>
+          <button className="save-button">Guardar</button>
         </div>
     </div>
   );

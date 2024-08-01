@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import swal from "sweetalert";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ref, get, update } from "firebase/database";
 import { auth, database } from "../firebaseConfig";
@@ -10,6 +9,7 @@ import { useAppContext } from "../context/AppContext";
 import "../styles/TrapDetail.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLifeRing } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
 
 const TrapDetail: React.FC = () => {
   const { trapKey } = useParams<{ trapKey: string }>();
@@ -83,6 +83,8 @@ const TrapDetail: React.FC = () => {
     });
   };
 
+  
+
   const handleRemove = () => {
     swal({
       title: "¿Estás seguro?",
@@ -116,6 +118,15 @@ const TrapDetail: React.FC = () => {
           icon: "info",
         });
       }
+    });
+  };
+
+  const solicitarAsistencia = () => {
+    Swal.fire({
+      title: 'Asistencia',
+      text: 'Se ha comunicado con un especialista para asistirle en su problema',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
     });
   };
 
@@ -159,7 +170,7 @@ const TrapDetail: React.FC = () => {
           <h2>{object.contador} capturados</h2>
           </div>
           
-          {isPaidVersion && <button >
+          {isPaidVersion && <button onClick={solicitarAsistencia}>
             Solicitar asistencia <FontAwesomeIcon icon={faLifeRing} />
           </button>}
           

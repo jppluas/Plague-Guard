@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { useAppContext } from '../context/AppContext';
+import Swal from 'sweetalert2';
 import '../styles/TopBar.css';
 
 type TopBarProps = {
@@ -63,6 +64,15 @@ const TopBar: React.FC<TopBarProps> = ({ onAddTrapClick }) => {
     setHamburgerOpen(!hamburgerOpen);
   };
 
+  const solicitarAsistencia = () => {
+    Swal.fire({
+      title: 'Asistencia',
+      text: 'Se ha comunicado con un especialista para asistirle en su problema',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+    });
+  };
+
   return (
     <div className="top-bar">
       <div className="logo-container" onClick={redirectHome}>
@@ -75,7 +85,7 @@ const TopBar: React.FC<TopBarProps> = ({ onAddTrapClick }) => {
           {isPaidVersion ? 'Vista Basic' : 'Vista Premium'}
         </button>
         <button onClick={onAddTrapClick} className="nav-button">Nueva trampa</button>
-        {isPaidVersion && <button className="nav-button">
+        {isPaidVersion && <button className="nav-button" onClick={solicitarAsistencia}>
             Solicitar asistencia
           </button>}
         <button onClick={redirectTutoriales} className="nav-button"> Tutoriales </button>

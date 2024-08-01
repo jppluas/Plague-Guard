@@ -12,9 +12,9 @@ const AddTrap: React.FC<AddTrapProps> = ({ onClose }) => {
   const [user] = useAuthState(auth);
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
-  const [status, setStatus] = useState('Activa');
-  const [pheromones, setPheromones] = useState(50);
-  const [plagues, setPlagues] = useState(20);
+  const [trampa, setTrampa] = useState('Activa');
+  const [pheromones, setPheromones] = useState(100);
+  const [contador, setContador] = useState(0);
   const [error, setError] = useState('');
 
   const handleAddTrap = async (event: React.FormEvent) => {
@@ -28,18 +28,18 @@ const AddTrap: React.FC<AddTrapProps> = ({ onClose }) => {
       id: `${user.uid}_${Date.now()}`, // Unique ID
       name,
       location,
-      status,
+      trampa,
       pheromones,
-      plagues,
+      contador,
     };
 
     try {
       await addTrapToUser(user.uid, trap);
       setName('');
       setLocation('');
-      setStatus('Activa');
-      setPheromones(50);
-      setPlagues(20);
+      setTrampa('Activa');
+      setPheromones(100);
+      setContador(0);
       setError('');
       onClose();
     } catch (error) {
@@ -62,7 +62,7 @@ const AddTrap: React.FC<AddTrapProps> = ({ onClose }) => {
           </label>
           <label>
             Estado:
-            <select value={status} onChange={(e) => setStatus(e.target.value)} required>
+            <select value={trampa} onChange={(e) => setTrampa(e.target.value)} required>
               <option value="Activa">Activa</option>
               <option value="Inactiva">Inactiva</option>
             </select>
@@ -73,7 +73,7 @@ const AddTrap: React.FC<AddTrapProps> = ({ onClose }) => {
           </label>
           <label>
             Plagas:
-            <input type="number" value={plagues} onChange={(e) => setPlagues(Number(e.target.value))} required />
+            <input type="number" value={contador} onChange={(e) => setContador(Number(e.target.value))} required />
           </label>
           {error && <p className="error">{error}</p>}
           <button type="submit">Añadir trampa</button>

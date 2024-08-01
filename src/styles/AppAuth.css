@@ -1,6 +1,5 @@
 .main {
   display: flex;
-  
 }
 
 .back{
@@ -10,6 +9,7 @@
     background-position: center;
     overflow: hidden;
     height: 100vh;
+    overflow-y: auto; 
 }
 
 .login, .signup {
