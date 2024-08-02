@@ -10,6 +10,7 @@ import "../styles/TrapDetail.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLifeRing } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
+import swal from 'sweetalert';
 
 const TrapDetail: React.FC = () => {
   const { trapKey } = useParams<{ trapKey: string }>();
@@ -69,12 +70,12 @@ const TrapDetail: React.FC = () => {
         },
       },
       dangerMode: true,
-    }).then((willChange) => {
-      if (willChange) {
-        const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
-        update(userObjectsRef, {
-          trampa: !object.trampa,
-        });
+}).then((willChange: boolean) => {
+  if (willChange) {
+    const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
+    update(userObjectsRef, {
+      trampa: !object.trampa,
+    });
         setObject({
           ...object,
           trampa: !object.trampa,
@@ -107,18 +108,15 @@ const TrapDetail: React.FC = () => {
         },
       },
       dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        /* const userObjectsRef = ref(database, `users/${user!.uid}/objects/${trapKey}`);
-        remove(userObjectsRef);
-        navigate("/app"); */
-        swal({
-          title: "¡UPS!",
-          text: "Esta función se encuentra desabilitada por el momento",
-          icon: "info",
-        });
-      }
+}).then((willDelete: boolean) => {
+  if (willDelete) {
+    swal({
+      title: "¡UPS!",
+      text: "Esta función se encuentra desabilitada por el momento",
+      icon: "info",
     });
+  }
+});
   };
 
   const solicitarAsistencia = () => {
